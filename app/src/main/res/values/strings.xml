@@ -1,0 +1,8 @@
+<!--
+  ~ Copyright (c) 2017. Gilang Ramadhan (gilangramadhan96.gr@gmail.com)
+  -->
+
+<resources>
+    <string name="app_name">Aplikasi Mengenal Buah</string>
+    <string name="title_activity_detail">DetailActivity</string>
+</resources>
