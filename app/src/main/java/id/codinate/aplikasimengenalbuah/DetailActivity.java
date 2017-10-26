@@ -15,25 +15,37 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
     String posisi, nama, gambar;
     ImageView img;
     TextView txt;
-    int[] suara ={R.raw.alpukat, R.raw.apel, R.raw.ceri,
-                R.raw.durian, R.raw.jambuair, R.raw.manggis,
-    R.raw.strawberry};
+    int[] suara = {R.raw.alpukat, R.raw.apel, R.raw.ceri,
+            R.raw.durian, R.raw.jambuair, R.raw.manggis,
+            R.raw.strawberry};
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.imgDetail)
+    ImageView imgDetail;
+    @BindView(R.id.txtDetail)
+    TextView txtDetail;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,8 +57,6 @@ public class DetailActivity extends AppCompatActivity {
         nama = getIntent().getStringExtra("nama");
         gambar = getIntent().getStringExtra("gambar");
         posisi = getIntent().getStringExtra("posisi");
-        txt = (TextView) findViewById(R.id.txtDetail);
-        img = (ImageView) findViewById(R.id.imgDetail);
 // pindah.putExtra("gambar", String.valueOf(gambar[position]));
         txt.setText(nama);
         img.setImageResource(Integer.parseInt(gambar));
@@ -57,12 +67,13 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-//    int[] suara ={R.raw.alpukat, R.raw.apel, R.raw.ceri,
+
+    //    int[] suara ={R.raw.alpukat, R.raw.apel, R.raw.ceri,
 //            R.raw.durian, R.raw.jambuair, R.raw.manggis,
 //            R.raw.strawberry};
     private void PlayMusik(String posisi) {
         int i = Integer.parseInt(posisi);
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+suara[i]);
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + suara[i]);
         MediaPlayer Player = new MediaPlayer();
         Player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -78,4 +89,15 @@ public class DetailActivity extends AppCompatActivity {
         Player.start();
     }
 
+    @OnClick({R.id.imgDetail, R.id.txtDetail, R.id.fab})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.imgDetail:
+                break;
+            case R.id.txtDetail:
+                break;
+            case R.id.fab:
+                break;
+        }
+    }
 }
