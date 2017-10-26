@@ -6,16 +6,17 @@ package id.codinate.aplikasimengenalbuah;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    ListView listView;
     String[] nama = {"Alpukat", "Apel", "Ceri",
             "Durian", "Jambu Air", "Manggis",
             "Strawberry"};
@@ -23,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.alpukat, R.drawable.apel, R.drawable.ceri,
             R.drawable.durian, R.drawable.jambuair, R.drawable.manggis,
             R.drawable.strawberry};
+    @BindView(R.id.listView)
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.listView);
+        ButterKnife.bind(this);
         Adapter adapter = new Adapter(this, gambar, nama);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
